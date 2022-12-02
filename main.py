@@ -23,7 +23,7 @@ def openLinkedinAndLogin(email,password,profileURL):
 
     profile_url = profileURL #Entering a profile URL to scrape
 
-    driver.get("https://www.linkedin.com/in/abhinavvsinhaa/")
+    driver.get("https://www.linkedin.com/in/shreybatra/")
     time.sleep(10)
     start = time.time()
     initialScroll = 0
@@ -47,56 +47,87 @@ def openLinkedinAndLogin(email,password,profileURL):
     intro = soup.find('div', {'class': 'pv-text-details__left-panel'})
     name_loc = intro.find("h1")
     name = name_loc.get_text().strip()
+    print(name)
+
     
     works_at_loc = intro.find("div", {'class': 'text-body-medium'})
     works_at = works_at_loc.get_text().strip()
+    print(works_at)
     
     
-    location_loc = intro.find_all("span", {'class': 'text-body-small'})
-    location = location_loc[1].get_text().strip()
-    result.name = name
-    result.works = works_at
-    result.location = location
+    # location_loc = intro.find_all("span", {'class': 'text-body-small'})
+    # location = location_loc[0].get_text().strip()
+    # result.name = name
+    # result.works = works_at
+    # result.location = location
 
-    experience = soup.find("section", {"id": "experience-section"}).find('ul')
-    li_tags = experience.find('div')
-    a_tags = li_tags.find("a")
-    job_title = a_tags.find("h3").get_text().strip()
-    
-    result.jobTitle = job_title
-    
-    company_name = a_tags.find_all("p")[1].get_text().strip()
-    result.companyName = company_name
-    
-    joining_date = a_tags.find_all("h4")[0].find_all("span")[1].get_text().strip()
-    
-    employment_duration = a_tags.find_all("h4")[1].find_all(
-        "span")[1].get_text().strip()
+    aboutme = soup.find("div",{"class": "pv-shared-text-with-see-more t-14 t-normal t-black display-flex align-items-center"})
+    about = aboutme.find("span",{"aria-hidden":"true"})
+    print("---------------")
+    print("-------------")
+    print("ABOUT ME")
+    print(about)
 
-    result.employment = joining_date + ", " + employment_duration
+    print("---------------")
+    print("-------------")
+    print("SKILLS: ")
 
-    jobs = driver.find_element('xpath',"//a[@data-link-to='jobs']/span")
-    
-    jobs.click()
+    skills = soup.find_all("a",{"data-field":"skill_card_skill_topic"})
+    for skill in skills:
+        myskill = skill.find("span",{"aria-hidden":"true"})
+        print(myskill)
 
-    job_src = driver.page_source
-    
-    soup = BeautifulSoup(job_src, 'html.parser') 
-    jobs_html = soup.find_all('a', {'class': 'job-card-list__title'})
-    job_titles = []
-    
-    for title in jobs_html:
-        job_titles.append(title.text.strip())
-    
-    result.jobTitles = job_titles
+    experience = soup.find("div", {"class": "pvs-list__outer-container"})
+    if (experience):
+        experience = experience.find("ul")
+        li_tags = experience.find_all('li')[0]
+        div1 = li_tags.find_all("div", {"class": "pvs-entity"})[0]
+        div2 = div1.find_all("div", {"class": "display-flex flex-row justify-space-between"})[1]
+        span = div2.find_all("span", {"aria-hidden": "true"})
+        print("---------------")
+        print("-------------")
+        print("HIGHLIGHTS")
+        for s in span: 
+            print(s)
+        
 
-    company_name_html = soup.find_all(
-    'div', {'class': 'job-card-container__company-name'})
-    company_names = []
+
+        # a_tags = li_tags.find("a")
+        # job_title = a_tags.find("h3").get_text().strip()
+        # print(job_title)
+        # company_name = a_tags.find_all("p")[1].get_text().strip()
+        # print(company_name)
+        # joining_date = a_tags.find_all("h4")[0].find_all("span")[1].get_text().strip()
+        # print(joining_date)
+        # employment_duration = a_tags.find_all("h4")[1].find_all(
+        # "span")[1].get_text().strip()
+        # print(employment_duration)
+
+
+    # jobs = driver.find_element('xpath',"//a[@data-link-to='jobs']/span")
     
-    for name in company_name_html:
-        company_names.append(name.text.strip())
+    # jobs.click()
+
+    # job_src = driver.page_source
     
-    result.companyNames = company_names
+    # soup = BeautifulSoup(job_src, 'html.parser') 
+    # jobs_html = soup.find_all('a', {'class': 'job-card-list__title'})
+    # job_titles = []
+    
+    # for title in jobs_html:
+    #     job_titles.append(title.text.strip())
+    
+    # # result.jobTitles = job_titles
+
+    # company_name_html = soup.find_all(
+    # 'div', {'class': 'job-card-container__company-name'})
+    # company_names = []
+    
+    # for name in company_name_html:
+    #     company_names.append(name.text.strip())
+    
+    # result.companyNames = company_names
 
     return result
+
+# openLinkedinAndLogin("abhinavvsinhaa@gmail.com", "Linkedin01@", "https://www.linkedin.com/in/shreybatra/")
