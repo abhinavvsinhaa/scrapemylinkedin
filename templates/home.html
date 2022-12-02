@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn Webscrapper</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <!-- ====== Forms Section Start -->
+<section class="bg-[#F4F7FF] py-20 lg:py-[120px]">
+    <div class="container mx-auto">
+      <div class="-mx-4 flex flex-wrap">
+        <div class="w-full px-4">
+          <div
+            class="relative mx-auto max-w-[525px] overflow-hidden rounded-lg bg-white py-16 px-10 text-center sm:px-12 md:px-[60px]"
+          >
+            <div class="mb-10 text-center md:mb-16">
+                <a
+                href="https://linkedin.com"
+                class="mx-auto inline-block max-w-[160px]"
+              >
+                <img
+                  src="https://logolook.net/wp-content/uploads/2021/06/Linkedin-Logo-2003.png"
+                  alt="logo"
+                />
+              </a>
+            </div>
+            <form method="post" id="linkedinform" action="{{url_for("home")}}">
+              <div class="mb-6">
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="LinkedIn Email"
+                  class="border-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none focus:border-primary focus-visible:shadow-none"
+                />
+              </div>
+              <div class="mb-6">
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="LinkedIn Password"
+                  class="border-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none focus:border-primary focus-visible:shadow-none"
+                />
+              </div>
+              <div class="mb-6">
+                <input
+                  type="text"
+                  name="profileURL"
+                  placeholder="Profile URL to scrape"
+                  class="border-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none focus:border-primary focus-visible:shadow-none"
+                />
+              </div>
+              <div class="mb-10">
+                <input
+                  type="submit"
+                  value="Sign In"
+                  class="border-primary w-full cursor-pointer rounded-md border bg-blue-700 py-3 px-5 text-base text-white transition hover:bg-opacity-90"
+                />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ====== Forms Section End -->  
+</body>
+</html>

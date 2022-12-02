@@ -1,0 +1,22 @@
+{
+  "name": "scrapemylinkedin",
+  "version": "1.0.0",
+  "description": "Scraping LinkedIn using Python &amp; BeautifulSoup.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "python3 app.py",
+    "scrape": "python3 main.py"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abhinavvsinhaa/scrapemylinkedin.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abhinavvsinhaa/scrapemylinkedin/issues"
+  },
+  "homepage": "https://github.com/abhinavvsinhaa/scrapemylinkedin#readme"
+}
